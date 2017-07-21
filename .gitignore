@@ -1,4 +1,4 @@
 node_modules/
 .eslintrc
 .env
-src
+compiled

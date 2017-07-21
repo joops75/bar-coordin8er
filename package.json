@@ -11,8 +11,7 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "nodemon src/server.js --exec babel-node",
     "serve": "node compiled/server.js",
-    "compile": "babel-compile -p env -p react src:compiled",
-    "prepublish": "npm run compile"
+    "compile": "babel-compile -p env -p react src:compiled"
   },
   "author": "Simon Cooper",
   "license": "ISC",
@@ -24,13 +23,13 @@
     "mongoose": "^4.10.4",
     "node-yelp-fusion": "^1.0.4",
     "passport": "^0.3.2",
-    "passport-github": "^1.1.0",
+    "passport-github": "^1.1.0"
+  },
+  "devDependencies": {
     "babel-cli": "^6.24.1",
     "babel-compile": "^2.0.0",
     "babel-preset-env": "^1.6.0",
-    "babel-preset-react": "^6.24.1"
-  },
-  "devDependencies": {
+    "babel-preset-react": "^6.24.1",
     "nodemon": "^1.11.0"
   }
 }
