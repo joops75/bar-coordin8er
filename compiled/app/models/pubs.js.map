@@ -1,0 +1,25 @@
+{
+  "version": 3,
+  "sources": [
+    "pubs.js"
+  ],
+  "names": [
+    "mongoose",
+    "require",
+    "Schema",
+    "Pub",
+    "id",
+    "String",
+    "attendedBy",
+    "Array",
+    "module",
+    "exports",
+    "model"
+  ],
+  "mappings": "AAAA;;AAEA,IAAIA,WAAWC,QAAQ,UAAR,CAAf;AACA,IAAIC,SAASF,SAASE,MAAtB;;AAEA,IAAIC,MAAM,IAAID,MAAJ,CAAW;AACjBE,QAAIC,MADa;AAEjBC,gBAAYC;AAFK,CAAX,CAAV;;AAKAC,OAAOC,OAAP,GAAiBT,SAASU,KAAT,CAAe,KAAf,EAAsBP,GAAtB,CAAjB",
+  "file": "pubs.js",
+  "sourceRoot": "../../../src/app/models",
+  "sourcesContent": [
+    "'use strict'\n\nvar mongoose = require(\"mongoose\")\nvar Schema = mongoose.Schema\n\nvar Pub = new Schema({\n    id: String,\n    attendedBy: Array\n})\n\nmodule.exports = mongoose.model('Pub', Pub)"
+  ]
+}

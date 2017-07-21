@@ -1,0 +1,25 @@
+{
+  "version": 3,
+  "sources": [
+    "auth.js"
+  ],
+  "names": [
+    "module",
+    "exports",
+    "githubAuth",
+    "clientID",
+    "process",
+    "env",
+    "GITHUB_KEY",
+    "clientSecret",
+    "GITHUB_SECRET",
+    "callbackURL",
+    "APP_URL"
+  ],
+  "mappings": "AAAA;;AAEAA,OAAOC,OAAP,GAAiB;AACbC,gBAAY;AACRC,kBAAUC,QAAQC,GAAR,CAAYC,UADd;AAERC,sBAAcH,QAAQC,GAAR,CAAYG,aAFlB;AAGRC,qBAAaL,QAAQC,GAAR,CAAYK,OAAZ,GAAsB;AAH3B;AADC,CAAjB",
+  "file": "auth.js",
+  "sourceRoot": "../../../src/app/config",
+  "sourcesContent": [
+    "'use strict'\n\nmodule.exports = {\n    githubAuth: {\n        clientID: process.env.GITHUB_KEY,\n        clientSecret: process.env.GITHUB_SECRET,\n        callbackURL: process.env.APP_URL + 'auth/github/callback'\n    }\n}"
+  ]
+}

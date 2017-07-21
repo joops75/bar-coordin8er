@@ -1,0 +1,42 @@
+{
+  "version": 3,
+  "sources": [
+    "ajax-functions.js"
+  ],
+  "names": [
+    "appUrl",
+    "window",
+    "location",
+    "origin",
+    "ajaxFunctions",
+    "ready",
+    "fn",
+    "document",
+    "readyState",
+    "addEventListener",
+    "ajaxRequest",
+    "method",
+    "url",
+    "callback",
+    "xmlhttp",
+    "XMLHttpRequest",
+    "onreadystatechange",
+    "status",
+    "response",
+    "open",
+    "send",
+    "ajaxBarRequest",
+    "term",
+    "limit",
+    "offset",
+    "setRequestHeader",
+    "ajaxAttendance",
+    "barId"
+  ],
+  "mappings": ";;AAAA,IAAIA,SAASC,OAAOC,QAAP,CAAgBC,MAA7B;;AAEA,IAAIC,gBAAgB;AAChBC,WAAO,SAASA,KAAT,CAAeC,EAAf,EAAmB;AACtB,YAAI,OAAOA,EAAP,KAAc,UAAlB,EAA8B;AAC1B;AACH;AACD,YAAIC,SAASC,UAAT,KAAwB,UAA5B,EAAwC;AACpC,mBAAOF,IAAP;AACH;AACDC,iBAASE,gBAAT,CAA0B,kBAA1B,EAA8CH,EAA9C,EAAkD,KAAlD;AACH,KATe;AAUhBI,iBAAa,SAASA,WAAT,CAAqBC,MAArB,EAA6BC,GAA7B,EAAkCC,QAAlC,EAA4C;AACrD,YAAIC,UAAU,IAAIC,cAAJ,EAAd;AACAD,gBAAQE,kBAAR,GAA6B,YAAW;AACpC,gBAAIF,QAAQN,UAAR,KAAuB,CAAvB,IAA4BM,QAAQG,MAAR,KAAmB,GAAnD,EAAwD;AACpDJ,yBAASC,QAAQI,QAAjB;AACH;AACJ,SAJD;AAKAJ,gBAAQK,IAAR,CAAaR,MAAb,EAAqBC,GAArB,EAA0B,IAA1B;AACAE,gBAAQM,IAAR;AACH,KAnBe;AAoBhBC,oBAAgB,SAASX,WAAT,CAAqBC,MAArB,EAA6BC,GAA7B,EAAkCU,IAAlC,EAAwCpB,QAAxC,EAAkDqB,KAAlD,EAAyDC,MAAzD,EAAiEX,QAAjE,EAA2E;AACvF,YAAIC,UAAU,IAAIC,cAAJ,EAAd;AACAD,gBAAQE,kBAAR,GAA6B,YAAW;AACpC,gBAAIF,QAAQN,UAAR,KAAuB,CAAvB,IAA4BM,QAAQG,MAAR,KAAmB,GAAnD,EAAwD;AACpDJ,yBAASC,QAAQI,QAAjB;AACH;AACJ,SAJD;AAKAJ,gBAAQK,IAAR,CAAaR,MAAb,EAAqBC,GAArB,EAA0B,IAA1B;AACAE,gBAAQW,gBAAR,CAAyB,UAAzB,EAAqCH,IAArC;AACAR,gBAAQW,gBAAR,CAAyB,cAAzB,EAAyCvB,QAAzC;AACAY,gBAAQW,gBAAR,CAAyB,WAAzB,EAAsCF,KAAtC;AACAT,gBAAQW,gBAAR,CAAyB,YAAzB,EAAuCD,MAAvC;AACAV,gBAAQM,IAAR;AACH,KAjCe;AAkChBM,oBAAgB,SAAShB,WAAT,CAAqBC,MAArB,EAA6BC,GAA7B,EAAkCe,KAAlC,EAAyCd,QAAzC,EAAmD;AAC/D,YAAIC,UAAU,IAAIC,cAAJ,EAAd;AACAD,gBAAQE,kBAAR,GAA6B,YAAW;AACpC,gBAAIF,QAAQN,UAAR,KAAuB,CAAvB,IAA4BM,QAAQG,MAAR,KAAmB,GAAnD,EAAwD;AACpDJ,yBAASC,QAAQI,QAAjB;AACH;AACJ,SAJD;AAKAJ,gBAAQK,IAAR,CAAaR,MAAb,EAAqBC,GAArB,EAA0B,IAA1B;AACAE,gBAAQW,gBAAR,CAAyB,WAAzB,EAAsCE,KAAtC;AACAb,gBAAQM,IAAR;AACH;AA5Ce,CAApB",
+  "file": "ajax-functions.js",
+  "sourceRoot": "../../../src/app/common",
+  "sourcesContent": [
+    "var appUrl = window.location.origin\n\nvar ajaxFunctions = {\n    ready: function ready(fn) {\n        if (typeof fn !== 'function') {\n            return\n        }\n        if (document.readyState === 'complete') {\n            return fn()\n        }\n        document.addEventListener('DOMContentLoaded', fn, false)\n    },\n    ajaxRequest: function ajaxRequest(method, url, callback) {\n        var xmlhttp = new XMLHttpRequest()\n        xmlhttp.onreadystatechange = function() {\n            if (xmlhttp.readyState === 4 && xmlhttp.status === 200) {\n                callback(xmlhttp.response)\n            }\n        }\n        xmlhttp.open(method, url, true)\n        xmlhttp.send()\n    },\n    ajaxBarRequest: function ajaxRequest(method, url, term, location, limit, offset, callback) {\n        var xmlhttp = new XMLHttpRequest()\n        xmlhttp.onreadystatechange = function() {\n            if (xmlhttp.readyState === 4 && xmlhttp.status === 200) {\n                callback(xmlhttp.response)\n            }\n        }\n        xmlhttp.open(method, url, true)\n        xmlhttp.setRequestHeader(\"termdata\", term)\n        xmlhttp.setRequestHeader(\"locationdata\", location)\n        xmlhttp.setRequestHeader(\"limitdata\", limit)\n        xmlhttp.setRequestHeader(\"offsetdata\", offset)\n        xmlhttp.send()\n    },\n    ajaxAttendance: function ajaxRequest(method, url, barId, callback) {\n        var xmlhttp = new XMLHttpRequest()\n        xmlhttp.onreadystatechange = function() {\n            if (xmlhttp.readyState === 4 && xmlhttp.status === 200) {\n                callback(xmlhttp.response)\n            }\n        }\n        xmlhttp.open(method, url, true)\n        xmlhttp.setRequestHeader(\"bariddata\", barId)\n        xmlhttp.send()\n    }\n}"
+  ]
+}

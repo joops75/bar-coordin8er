@@ -1,0 +1,36 @@
+{
+  "version": 3,
+  "sources": [
+    "server.js"
+  ],
+  "names": [
+    "express",
+    "require",
+    "routes",
+    "mongoose",
+    "passport",
+    "session",
+    "app",
+    "load",
+    "port",
+    "process",
+    "env",
+    "PORT",
+    "connect",
+    "MONGO_URI",
+    "use",
+    "static",
+    "__dirname",
+    "secret",
+    "resave",
+    "saveUninitialized",
+    "initialize",
+    "listen"
+  ],
+  "mappings": "AAAA;;AAEA,IAAIA,UAAUC,QAAQ,SAAR,CAAd;AAAA,IACIC,SAASD,QAAQ,uBAAR,CADb;AAAA,IAEIE,WAAWF,QAAQ,UAAR,CAFf;AAAA,IAGIG,WAAWH,QAAQ,UAAR,CAHf;AAAA,IAIII,UAAUJ,QAAQ,iBAAR,CAJd;AAKA,IAAIK,MAAMN,SAAV;AACAC,QAAQ,QAAR,EAAkBM,IAAlB;AACAN,QAAQ,uBAAR,EAAiCG,QAAjC;AACA,IAAII,OAAOC,QAAQC,GAAR,CAAYC,IAAZ,IAAoB,IAA/B;;AAEAR,SAASS,OAAT,CAAiBH,QAAQC,GAAR,CAAYG,SAA7B;;AAEAP,IAAIQ,GAAJ,CAAQ,SAAR,EAAmBd,QAAQe,MAAR,CAAeC,YAAY,SAA3B,CAAnB;AACAV,IAAIQ,GAAJ,CAAQ,SAAR,EAAmBd,QAAQe,MAAR,CAAeC,YAAY,aAA3B,CAAnB;AACAV,IAAIQ,GAAJ,CAAQ,cAAR,EAAwBd,QAAQe,MAAR,CAAeC,YAAY,kBAA3B,CAAxB;AACAV,IAAIQ,GAAJ,CAAQT,QAAQ;AACZY,YAAQ,kBADI;AAEfC,YAAQ,KAFO;AAGfC,uBAAmB;AAHJ,CAAR,CAAR;AAKAb,IAAIQ,GAAJ,CAAQV,SAASgB,UAAT,EAAR;AACAd,IAAIQ,GAAJ,CAAQV,SAASC,OAAT,EAAR;;AAEAH,OAAOI,GAAP,EAAYF,QAAZ;;AAEAE,IAAIe,MAAJ,CAAWb,IAAX",
+  "file": "server.js",
+  "sourceRoot": "../src",
+  "sourcesContent": [
+    "'use strict'\n\nvar express = require(\"express\"),\n    routes = require(\"./app/routes/index.js\"),\n    mongoose = require(\"mongoose\"),\n    passport = require(\"passport\"),\n    session = require(\"express-session\")\nvar app = express()\nrequire(\"dotenv\").load()\nrequire(\"./app/config/passport\")(passport)\nvar port = process.env.PORT || 3000\n\nmongoose.connect(process.env.MONGO_URI)\n\napp.use('/public', express.static(__dirname + '/public'))\napp.use('/common', express.static(__dirname + '/app/common'))\napp.use('/controllers', express.static(__dirname + '/app/controllers'))\napp.use(session({\n    secret: 'secretClementine',\n\tresave: false,\n\tsaveUninitialized: true\n}))\napp.use(passport.initialize())\napp.use(passport.session())\n\nroutes(app, passport)\n\napp.listen(port)"
+  ]
+}

@@ -1,0 +1,48 @@
+{
+  "version": 3,
+  "sources": [
+    "index.js"
+  ],
+  "names": [
+    "directory",
+    "__dirname",
+    "arr",
+    "split",
+    "splice",
+    "path",
+    "join",
+    "BarsHandler",
+    "require",
+    "module",
+    "exports",
+    "app",
+    "passport",
+    "isLoggedIn",
+    "req",
+    "res",
+    "next",
+    "isAuthenticated",
+    "end",
+    "barsHandler",
+    "route",
+    "get",
+    "sendFile",
+    "logout",
+    "redirect",
+    "json",
+    "user",
+    "authenticate",
+    "successRedirect",
+    "failureRedirect",
+    "getBars",
+    "post",
+    "attendBar",
+    "getAttendees"
+  ],
+  "mappings": "AAAA;;AAEA,IAAIA,YAAYC,SAAhB;AACA,IAAIC,MAAMF,UAAUG,KAAV,CAAgB,GAAhB,CAAV;AACAD,IAAIE,MAAJ,CAAW,CAAC,CAAZ,EAAe,CAAf;AACA,IAAIC,OAAOH,IAAII,IAAJ,CAAS,GAAT,CAAX;AACA,IAAIC,cAAcC,QAAQH,OAAO,wCAAf,CAAlB;;AAEAI,OAAOC,OAAP,GAAiB,UAASC,GAAT,EAAcC,QAAd,EAAwB;AACrC,aAASC,UAAT,CAAoBC,GAApB,EAAyBC,GAAzB,EAA8BC,IAA9B,EAAoC;AAChC,YAAIF,IAAIG,eAAJ,EAAJ,EAA2B;AACvB,mBAAOD,MAAP;AACH,SAFD,MAEO;AACHD,gBAAIG,GAAJ,CAAQ,eAAR,EADG,CACqB;AAC3B;AACJ;AACD,QAAIC,cAAc,IAAIZ,WAAJ,EAAlB;AACAI,QAAIS,KAAJ,CAAU,GAAV,EACKC,GADL,CACS,UAASP,GAAT,EAAcC,GAAd,EAAmB;AACpBA,YAAIO,QAAJ,CAAajB,OAAO,mBAApB;AACH,KAHL;AAIAM,QAAIS,KAAJ,CAAU,SAAV,EACKC,GADL,CACS,UAASP,GAAT,EAAcC,GAAd,EAAmB;AACpBD,YAAIS,MAAJ;AACAR,YAAIS,QAAJ,CAAa,GAAb;AACH,KAJL;AAKAb,QAAIS,KAAJ,CAAU,UAAV,EACKC,GADL,CACSR,UADT,EACqB,UAASC,GAAT,EAAcC,GAAd,EAAmB;AAChCA,YAAIU,IAAJ,CAASX,IAAIY,IAAb;AACH,KAHL;AAIAf,QAAIS,KAAJ,CAAU,cAAV,EACKC,GADL,CACST,SAASe,YAAT,CAAsB,QAAtB,CADT;AAEAhB,QAAIS,KAAJ,CAAU,uBAAV,EACKC,GADL,CACST,SAASe,YAAT,CAAsB,QAAtB,EAAgC;AACjCC,yBAAiB,GADgB;AAEjCC,yBAAiB;AAFgB,KAAhC,CADT;AAKAlB,QAAIS,KAAJ,CAAU,eAAV,EACKC,GADL,CACSF,YAAYW,OADrB;AAEAnB,QAAIS,KAAJ,CAAU,oBAAV,EACKW,IADL,CACUZ,YAAYa,SADtB;AAEArB,QAAIS,KAAJ,CAAU,uBAAV,EACKC,GADL,CACSF,YAAYc,YADrB;AAEH,CAnCD",
+  "file": "index.js",
+  "sourceRoot": "../../../src/app/routes",
+  "sourcesContent": [
+    "'use strict'\n\nvar directory = __dirname\nvar arr = directory.split('/')\narr.splice(-2, 2)\nvar path = arr.join('/')\nvar BarsHandler = require(path + \"/app/controllers/barsHandler.server.js\")\n\nmodule.exports = function(app, passport) {\n    function isLoggedIn(req, res, next) {\n        if (req.isAuthenticated()) {\n            return next()\n        } else {\n            res.end('not logged in')//must respond with *something* or else code in ajax request won't run\n        }\n    }\n    var barsHandler = new BarsHandler()\n    app.route('/')\n        .get(function(req, res) {\n            res.sendFile(path + '/public/bars.html')\n        })\n    app.route('/logout')\n        .get(function(req, res) {\n            req.logout()\n            res.redirect('/')\n        })\n    app.route('/api/:id')\n        .get(isLoggedIn, function(req, res) {\n            res.json(req.user)\n        })\n    app.route('/auth/github')\n        .get(passport.authenticate('github'))\n    app.route('/auth/github/callback')\n        .get(passport.authenticate('github', {\n            successRedirect: '/',\n            failureRedirect: '/'\n        }))\n    app.route('/api/:id/bars')\n        .get(barsHandler.getBars)\n    app.route('/api/:id/attendBar')\n        .post(barsHandler.attendBar)\n    app.route('/api/:id/getAttendees')\n        .get(barsHandler.getAttendees)\n}"
+  ]
+}

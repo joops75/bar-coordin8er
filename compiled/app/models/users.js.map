@@ -1,0 +1,30 @@
+{
+  "version": 3,
+  "sources": [
+    "users.js"
+  ],
+  "names": [
+    "mongoose",
+    "require",
+    "Schema",
+    "User",
+    "github",
+    "id",
+    "String",
+    "displayName",
+    "username",
+    "publicRepos",
+    "Number",
+    "attending",
+    "Array",
+    "module",
+    "exports",
+    "model"
+  ],
+  "mappings": "AAAA;;AAEA,IAAIA,WAAWC,QAAQ,UAAR,CAAf;AACA,IAAIC,SAASF,SAASE,MAAtB;;AAEA,IAAIC,OAAO,IAAID,MAAJ,CAAW;AAClBE,YAAQ;AACJC,YAAIC,MADA;AAEJC,qBAAaD,MAFT;AAGJE,kBAAUF,MAHN;AAIJG,qBAAaC;AAJT,KADU;AAOlBC,eAAWC;AAPO,CAAX,CAAX;;AAUAC,OAAOC,OAAP,GAAiBd,SAASe,KAAT,CAAe,MAAf,EAAuBZ,IAAvB,CAAjB",
+  "file": "users.js",
+  "sourceRoot": "../../../src/app/models",
+  "sourcesContent": [
+    "'use strict'\n\nvar mongoose = require(\"mongoose\")\nvar Schema = mongoose.Schema\n\nvar User = new Schema({\n    github: {\n        id: String,\n        displayName: String,\n        username: String,\n        publicRepos: Number\n    },\n    attending: Array\n})\n\nmodule.exports = mongoose.model('User', User)"
+  ]
+}
