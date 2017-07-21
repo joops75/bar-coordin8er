@@ -1,0 +1,86 @@
+body {
+    width: 800px;
+    background: url('/public/img/stars-background.jpg');
+    background-attachment: fixed;
+    font-family: 'Life Savers', cursive;
+    margin: auto;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+h2 {
+    width: 800px;
+    text-align: center;
+    color: white;
+    margin: auto;
+}
+.navigation {
+    color: white;
+    margin: 10px 5px 10px 5px;
+}
+button {
+    margin: 0px 5px 5px 0px;
+}
+input {
+    color: black;
+    margin-right: 5px;
+}
+.results {
+    background: rgb(40, 0, 77);
+    margin: 5px 0px 0px 0px;
+    padding: 5px;
+    border-radius: 5px;
+}
+.height-restrict {
+    height: 30px;
+    line-height: 30px;
+}
+.height-restrict-btn {
+    height: 30px;
+}
+ .float-right {
+    float: right;
+}
+ .float-left {
+    float: left;
+}
+.inline {
+    display: inline;
+}
+.row-height {
+    height: 100px;
+}
+.line-height {
+    line-height: 100px;
+}
+span {
+    color: white;
+    margin: 0px 5px 0px 5px;
+}
+img {
+    height: 90px;
+    width: 90px;
+    border-radius: 5px;
+}
+ul {
+    max-height: 190px;
+    overflow-y: auto;
+}
+li {
+    font-size: 15px;
+    line-height: 15px;
+    color: black;
+    padding: 2px 0px 2px 5px;
+}
+li:hover {
+    background: rgb(179, 179, 255);
+}
+.pages {
+    margin: 5px 0px 0px 0px;
+}
+.page:hover {
+    text-decoration: underline;
+    cursor: pointer;
+}
+.nopage {
+    color: red;
+}
