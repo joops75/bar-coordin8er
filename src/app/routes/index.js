@@ -1,10 +1,11 @@
 'use strict'
 
+var path = require('path')
 var directory = __dirname
-var arr = directory.split('/')
+var arr = directory.split(/[\/\\]/)
 arr.splice(-2, 2)
-var path = arr.join('/')
-var BarsHandler = require(path + "/app/controllers/barsHandler.server.js")
+var pathStub = arr.indexOf('/') !== -1 ? arr.join('/') : arr.join('\\')
+var BarsHandler = require(path.join(pathStub + "/app/controllers/barsHandler.server.js"))
 
 module.exports = function(app, passport) {
     function isLoggedIn(req, res, next) {
@@ -17,7 +18,7 @@ module.exports = function(app, passport) {
     var barsHandler = new BarsHandler()
     app.route('/')
         .get(function(req, res) {
-            res.sendFile(path + '/public/bars.html')
+            res.sendFile(pathStub + '/public/bars.html')
         })
     app.route('/logout')
         .get(function(req, res) {
