@@ -2,6 +2,8 @@
 An app where users can search for food and drink businesses in a specified location and declare their plan to attend if 
 they wish.
 
+This app is built upon the code at https://github.com/johnstonbl01/clementinejs-fcc / http://www.clementinejs.com/tutorials/tutorial-passport.html.
+
 The user is presented with a search toolbar where they can enter a key word such as "bars", "food", "restaurants" or even 
 a specific business name such as "Starbucks". They can also enter a town/city and country. After they hit "Go!", the Yelp 
 Fusion API is called with this information, and then the results (max 20) are rendered to the screen using react.js. If 
