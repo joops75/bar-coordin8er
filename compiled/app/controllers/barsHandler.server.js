@@ -1,8 +1,8 @@
 'use strict';
 
 require("dotenv").load();
-var Yelp = require('node-yelp-fusion');
-var yelp = new Yelp({ id: process.env.YELP_FUSION_KEY, secret: process.env.YELP_FUSION_SECRET });
+var yelp = require('yelp-fusion');
+var client = yelp.client(process.env.YELP_FUSION_APIKEY);
 var Pub = require("../models/pubs.js");
 var User = require("../models/users.js");
 
@@ -12,8 +12,15 @@ function barsHandler() {
         var location = req.headers.locationdata;
         var limit = req.headers.limitdata;
         var offset = req.headers.offsetdata;
-        yelp.search("https://api.yelp.com/v3/businesses/search&term=" + term + "&location=" + location + "&categories=bars&limit=" + limit + "&offset=" + offset).then(function (result) {
-            res.json(result);
+        client.search({
+            term: term,
+            location: location,
+            limit: limit,
+            offset: offset
+        }).then(function (result) {
+            res.end(result.body);
+        }).catch(function (e) {
+            console.log(e);
         });
     };
     var dateFilter = function dateFilter(attendedBy) {

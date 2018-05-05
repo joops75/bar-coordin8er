@@ -16,6 +16,8 @@
     "process",
     "env",
     "PORT",
+    "address",
+    "IP",
     "connect",
     "MONGO_URI",
     "use",
@@ -27,10 +29,10 @@
     "initialize",
     "listen"
   ],
-  "mappings": "AAAA;;AAEA,IAAIA,UAAUC,QAAQ,SAAR,CAAd;AAAA,IACIC,SAASD,QAAQ,uBAAR,CADb;AAAA,IAEIE,WAAWF,QAAQ,UAAR,CAFf;AAAA,IAGIG,WAAWH,QAAQ,UAAR,CAHf;AAAA,IAIII,UAAUJ,QAAQ,iBAAR,CAJd;AAKA,IAAIK,MAAMN,SAAV;AACAC,QAAQ,QAAR,EAAkBM,IAAlB;AACAN,QAAQ,uBAAR,EAAiCG,QAAjC;AACA,IAAII,OAAOC,QAAQC,GAAR,CAAYC,IAAZ,IAAoB,IAA/B;;AAEAR,SAASS,OAAT,CAAiBH,QAAQC,GAAR,CAAYG,SAA7B;;AAEAP,IAAIQ,GAAJ,CAAQ,SAAR,EAAmBd,QAAQe,MAAR,CAAeC,YAAY,SAA3B,CAAnB;AACAV,IAAIQ,GAAJ,CAAQ,SAAR,EAAmBd,QAAQe,MAAR,CAAeC,YAAY,aAA3B,CAAnB;AACAV,IAAIQ,GAAJ,CAAQ,cAAR,EAAwBd,QAAQe,MAAR,CAAeC,YAAY,kBAA3B,CAAxB;AACAV,IAAIQ,GAAJ,CAAQT,QAAQ;AACZY,YAAQ,kBADI;AAEfC,YAAQ,KAFO;AAGfC,uBAAmB;AAHJ,CAAR,CAAR;AAKAb,IAAIQ,GAAJ,CAAQV,SAASgB,UAAT,EAAR;AACAd,IAAIQ,GAAJ,CAAQV,SAASC,OAAT,EAAR;;AAEAH,OAAOI,GAAP,EAAYF,QAAZ;;AAEAE,IAAIe,MAAJ,CAAWb,IAAX",
+  "mappings": "AAAA;;AAEA,IAAIA,UAAUC,QAAQ,SAAR,CAAd;AAAA,IACIC,SAASD,QAAQ,uBAAR,CADb;AAAA,IAEIE,WAAWF,QAAQ,UAAR,CAFf;AAAA,IAGIG,WAAWH,QAAQ,UAAR,CAHf;AAAA,IAIII,UAAUJ,QAAQ,iBAAR,CAJd;AAKA,IAAIK,MAAMN,SAAV;AACAC,QAAQ,QAAR,EAAkBM,IAAlB;AACAN,QAAQ,uBAAR,EAAiCG,QAAjC;AACA,IAAII,OAAOC,QAAQC,GAAR,CAAYC,IAAZ,IAAoB,IAA/B;AACA,IAAIC,UAAUH,QAAQC,GAAR,CAAYG,EAAZ,IAAkB,iBAAhC;;AAEAV,SAASW,OAAT,CAAiBL,QAAQC,GAAR,CAAYK,SAAZ,IAAyB,eAAeH,OAAf,GAAyB,gBAAnE;;AAEAN,IAAIU,GAAJ,CAAQ,SAAR,EAAmBhB,QAAQiB,MAAR,CAAeC,YAAY,SAA3B,CAAnB;AACAZ,IAAIU,GAAJ,CAAQ,SAAR,EAAmBhB,QAAQiB,MAAR,CAAeC,YAAY,aAA3B,CAAnB;AACAZ,IAAIU,GAAJ,CAAQ,cAAR,EAAwBhB,QAAQiB,MAAR,CAAeC,YAAY,kBAA3B,CAAxB;AACAZ,IAAIU,GAAJ,CAAQX,QAAQ;AACZc,YAAQ,kBADI;AAEfC,YAAQ,KAFO;AAGfC,uBAAmB;AAHJ,CAAR,CAAR;AAKAf,IAAIU,GAAJ,CAAQZ,SAASkB,UAAT,EAAR;AACAhB,IAAIU,GAAJ,CAAQZ,SAASC,OAAT,EAAR;;AAEAH,OAAOI,GAAP,EAAYF,QAAZ;;AAEAE,IAAIiB,MAAJ,CAAWf,IAAX",
   "file": "server.js",
   "sourceRoot": "../src",
   "sourcesContent": [
-    "'use strict'\n\nvar express = require(\"express\"),\n    routes = require(\"./app/routes/index.js\"),\n    mongoose = require(\"mongoose\"),\n    passport = require(\"passport\"),\n    session = require(\"express-session\")\nvar app = express()\nrequire(\"dotenv\").load()\nrequire(\"./app/config/passport\")(passport)\nvar port = process.env.PORT || 3000\n\nmongoose.connect(process.env.MONGO_URI)\n\napp.use('/public', express.static(__dirname + '/public'))\napp.use('/common', express.static(__dirname + '/app/common'))\napp.use('/controllers', express.static(__dirname + '/app/controllers'))\napp.use(session({\n    secret: 'secretClementine',\n\tresave: false,\n\tsaveUninitialized: true\n}))\napp.use(passport.initialize())\napp.use(passport.session())\n\nroutes(app, passport)\n\napp.listen(port)"
+    "'use strict'\r\n\r\nvar express = require(\"express\"),\r\n    routes = require(\"./app/routes/index.js\"),\r\n    mongoose = require(\"mongoose\"),\r\n    passport = require(\"passport\"),\r\n    session = require(\"express-session\")\r\nvar app = express()\r\nrequire(\"dotenv\").load()\r\nrequire(\"./app/config/passport\")(passport)\r\nvar port = process.env.PORT || 3000\r\nvar address = process.env.IP || '127.0.0.1:27017'\r\n\r\nmongoose.connect(process.env.MONGO_URI || 'mongodb://' + address + '/nightlife_app')\r\n\r\napp.use('/public', express.static(__dirname + '/public'))\r\napp.use('/common', express.static(__dirname + '/app/common'))\r\napp.use('/controllers', express.static(__dirname + '/app/controllers'))\r\napp.use(session({\r\n    secret: 'secretClementine',\r\n\tresave: false,\r\n\tsaveUninitialized: true\r\n}))\r\napp.use(passport.initialize())\r\napp.use(passport.session())\r\n\r\nroutes(app, passport)\r\n\r\napp.listen(port)"
   ]
 }

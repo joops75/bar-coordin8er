@@ -9,8 +9,9 @@ var app = express();
 require("dotenv").load();
 require("./app/config/passport")(passport);
 var port = process.env.PORT || 3000;
+var address = process.env.IP || '127.0.0.1:27017';
 
-mongoose.connect(process.env.MONGO_URI);
+mongoose.connect(process.env.MONGO_URI || 'mongodb://' + address + '/nightlife_app');
 
 app.use('/public', express.static(__dirname + '/public'));
 app.use('/common', express.static(__dirname + '/app/common'));

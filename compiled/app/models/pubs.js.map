@@ -20,6 +20,6 @@
   "file": "pubs.js",
   "sourceRoot": "../../../src/app/models",
   "sourcesContent": [
-    "'use strict'\n\nvar mongoose = require(\"mongoose\")\nvar Schema = mongoose.Schema\n\nvar Pub = new Schema({\n    id: String,\n    attendedBy: Array\n})\n\nmodule.exports = mongoose.model('Pub', Pub)"
+    "'use strict'\r\n\r\nvar mongoose = require(\"mongoose\")\r\nvar Schema = mongoose.Schema\r\n\r\nvar Pub = new Schema({\r\n    id: String,\r\n    attendedBy: Array\r\n})\r\n\r\nmodule.exports = mongoose.model('Pub', Pub)"
   ]
 }

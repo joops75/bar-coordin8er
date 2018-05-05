@@ -20,6 +20,6 @@
   "file": "auth.js",
   "sourceRoot": "../../../src/app/config",
   "sourcesContent": [
-    "'use strict'\n\nmodule.exports = {\n    githubAuth: {\n        clientID: process.env.GITHUB_KEY,\n        clientSecret: process.env.GITHUB_SECRET,\n        callbackURL: process.env.APP_URL + 'auth/github/callback'\n    }\n}"
+    "'use strict'\r\n\r\nmodule.exports = {\r\n    githubAuth: {\r\n        clientID: process.env.GITHUB_KEY,\r\n        clientSecret: process.env.GITHUB_SECRET,\r\n        callbackURL: process.env.APP_URL + 'auth/github/callback'\r\n    }\r\n}"
   ]
 }

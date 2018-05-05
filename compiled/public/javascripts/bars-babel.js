@@ -173,6 +173,8 @@ var SearchResults = function (_React$Component) {
   }, {
     key: 'attendBar',
     value: function attendBar(e) {
+      var _this4 = this;
+
       var i = e.target.id.split('_')[1];
       if (!this.state.username) {
         $('#attendNotice_' + i).css('display', 'inline').fadeOut(3000);
@@ -181,23 +183,36 @@ var SearchResults = function (_React$Component) {
         var barId = this.state.bars.businesses[i].id;
         ajaxFunctions.ready(ajaxFunctions.ajaxAttendance('POST', url, barId, function (number) {
           $('#attendButton_' + i)[0].textContent = number + ' going';
-          $('#attending_' + i)[0].style.display == 'none' ? $('#attending_' + i).css('display', '') : $('#attending_' + i).css('display', 'none');
+          var attending = _this4.state.attending;
+          var attendingIndex = -1;
+          for (var j in attending) {
+            if (attending[j].id == barId) attendingIndex = j;
+            break;
+          }
+          if (attendingIndex == -1) {
+            attending.push({ id: barId, date: Date.now() });
+          } else {
+            attending.splice(attendingIndex, 1);
+          }
+          _this4.setState({
+            attending: attending
+          });
         }));
       }
     }
   }, {
     key: 'render',
     value: function render() {
-      var _this4 = this;
+      var _this5 = this;
 
       var headerStyle = function headerStyle() {
-        if (!_this4.state.username) return { visibility: 'hidden' };
+        if (!_this5.state.username) return { visibility: 'hidden' };
       };
       var loginButtonStyle = function loginButtonStyle() {
-        if (_this4.state.username) return { display: 'none' };
+        if (_this5.state.username) return { display: 'none' };
       };
       var logoutButtonStyle = function logoutButtonStyle() {
-        if (!_this4.state.username) return { display: 'none' };
+        if (!_this5.state.username) return { display: 'none' };
       };
       return React.createElement(
         'div',
@@ -285,8 +300,8 @@ function Bars(props) {
       bar.image_url ? img = React.createElement('img', { src: bar.image_url }) : img = React.createElement('img', { src: '/public/img/NoImageAvailable.png' });
       var barMatch = false;
       if (props.attending && props.attending.length > 0) {
-        for (var _i in props.attending) {
-          if (props.attending[_i].id == bar.id) {
+        for (var j in props.attending) {
+          if (props.attending[j].id == bar.id) {
             barMatch = true;
             break;
           }

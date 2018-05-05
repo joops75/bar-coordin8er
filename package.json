@@ -26,7 +26,6 @@
     "yelp-fusion": "^2.0.3"
   },
   "devDependencies": {
-    "babel-cli": "^6.24.1",
     "babel-compile": "^2.0.0",
     "babel-preset-env": "^1.6.0",
     "babel-preset-react": "^6.24.1",
