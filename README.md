@@ -38,7 +38,9 @@ Technologies used in this project:
 * mongodb
 * mongoose
 * react
+* passport
 
 Addtional packages of note:
 * yelp-fusion
+* passport-github
 * babel-compile
