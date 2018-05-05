@@ -128,7 +128,20 @@
             var barId = this.state.bars.businesses[i].id
             ajaxFunctions.ready(ajaxFunctions.ajaxAttendance('POST', url, barId, (number) => {
               $('#attendButton_' + i)[0].textContent = number + ' going'
-              $('#attending_' + i)[0].style.display == 'none' ? $('#attending_' + i).css('display', '') : $('#attending_' + i).css('display', 'none')
+              var attending = this.state.attending
+              var attendingIndex = -1
+              for (let j in attending) {
+                if (attending[j].id == barId) attendingIndex = j
+                break
+              }
+              if (attendingIndex == -1) {
+                attending.push({id: barId, date: Date.now()})
+              } else {
+                attending.splice(attendingIndex, 1)
+              }
+              this.setState({
+                attending: attending
+              })
             }))
           }
         }
@@ -178,8 +191,8 @@
             bar.image_url ? img = <img src={bar.image_url}/> : img = <img src='/public/img/NoImageAvailable.png'/>
             var barMatch = false
             if (props.attending && props.attending.length > 0) {
-              for (let i in props.attending) {
-                if (props.attending[i].id == bar.id) {
+              for (let j in props.attending) {
+                if (props.attending[j].id == bar.id) {
                   barMatch = true
                   break
                 }
