@@ -2,10 +2,16 @@
 
 var path = require('path')
 var directory = __dirname
-var arr = directory.split(/[\/\\]/)
-arr.splice(-2, 2)
-var pathStub = arr.indexOf('/') !== -1 ? arr.join('/') : arr.join('\\')
-var BarsHandler = require(path.join(pathStub + "/app/controllers/barsHandler.server.js"))
+var folder
+if (directory.split('\\').length > 1) {//indicates address is split by back slashes (windows environment)
+  var arr = directory.split('\\')
+  folder = arr[arr.length - 3]
+} else {//indicates address is split by forward slashes (linux environment)
+  var arr = directory.split('/')
+  folder = arr[arr.length - 3]
+}
+
+var BarsHandler = require(path.join(process.cwd() + '/' + folder + "/app/controllers/barsHandler.server.js"))
 
 module.exports = function(app, passport) {
     function isLoggedIn(req, res, next) {
@@ -18,7 +24,7 @@ module.exports = function(app, passport) {
     var barsHandler = new BarsHandler()
     app.route('/')
         .get(function(req, res) {
-            res.sendFile(pathStub + '/public/bars.html')
+            res.sendFile(process.cwd() + '/' + folder + '/public/bars.html')
         })
     app.route('/logout')
         .get(function(req, res) {
