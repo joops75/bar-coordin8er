@@ -23,12 +23,11 @@ Addtionally, browser session storage is used to store the current search informa
 refreshed. This means when a user logs in via gihub, the page remains as it was when they are redirected back to the site. 
 The session storage is wiped when the user logs out, clearing the screen in the process.
 
-In development mode, files are served via the '/src' directory which uses the in-browser babel transformer 
-to compile jsx and es6 code. A production build is made by running 'npm run compile', which uses the 
-babel-compile package and stores files in '/compiled'. The in-browser babel transformer cdn can then be 
-removed from '/compiled/public/stocks.html and the body's script tag type changed from 'text/babel' to 
-'text/javascript'. The compiled files can then be served by running 'npm run serve', or 
-'node compiled/server.js'.
+In development mode, files are served via the '/src' directory which features a 'bars.html' file that runs an in-browser
+babel transformer to compile jsx and es6 code. A production build is made by running 'npm run compile', which uses the 
+babel-compile package and stores files in '/compiled'. The in-browser babel transformer cdn can then be removed from 
+'/compiled/public/bars.html and the body's script tag type changed from 'text/babel' to 'text/javascript'. The compiled 
+files can then be served by running 'npm run serve' or 'node compiled/server.js'.
 
 Technologies used in this project:
 * node
